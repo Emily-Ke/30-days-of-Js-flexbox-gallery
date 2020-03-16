@@ -31,16 +31,51 @@ body {
 }
 
 .panel {
+  width: 20%;
   flex-grow: 1;
   padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   transition: all 1s;
 }
 
+.panel > p {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.primary-text {
+  top: 50%;
+}
+
+.secondary-text {
+  opacity: 0;
+  font-size: 24px;
+  transition: all 1s;
+}
+
+.secondary-text:first-child {
+  top: 0;
+}
+
+.secondary-text:last-child {
+  bottom: 0;
+}
+
 .panel-active {
-  flex-grow: 5;
+  width: 50%;
+}
+
+.panel-active > .secondary-text {
+  opacity: 1;
+}
+
+.panel-active > .secondary-text:first-child {
+  top: 10%;
+}
+
+.panel-active > .secondary-text:last-child {
+  bottom: 10%;
 }
 
 .panel:nth-child(1) {
