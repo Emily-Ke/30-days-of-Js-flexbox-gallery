@@ -1,7 +1,3 @@
-:root {
-  --max-panel-width: 1000px;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,77 +23,62 @@ body {
   display: flex;
   height: 500px;
   flex-grow: 1;
-  max-width: calc(5 * var(--max-panel-width) + 4 * var(--max-panel-width));
+  width: 100%;
+  max-width: 2000px; /* images are a maximum of 1000px wide and take up at most 50% of the container */
 }
 
 .panel {
   width: 20%;
   flex-grow: 1;
   padding: 0.5rem;
-  background-position: center;
-  background-size: cover;
-  transition: width 0.7s ease-in-out;
   position: relative;
-}
-
-.panel > p {
-  position: absolute;
-  width: 100%;
+  transition: width 0.7s ease-in-out;
   text-align: center;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 0 0 6px rgba(0, 0, 0, 0.25),
-    2px 2px 6px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.primary-text {
-  top: 50%;
-}
-
-.secondary-text {
-  opacity: 0;
-  font-size: 24px;
-  transition: all 0.7s ease-in;
-}
-
-.secondary-text:first-child {
-  top: 0;
-}
-
-.secondary-text:last-child {
-  bottom: 0;
-}
-
-.panel-active {
+.panel.panel-active {
   width: 50%;
 }
 
-.panel-active > .secondary-text {
+.text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.text-overlay > p {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), 3px 3px 5px #000;
+}
+
+.text-overlay > p.secondary-text {
+  opacity: 0;
+  font-size: 24px;
+  transition: all 0.7s;
+}
+
+.text-overlay > p.secondary-text:first-child {
+  transform: translateY(-100%);
+}
+
+.text-overlay > p.secondary-text:last-child {
+  transform: translateY(100%);
+}
+
+.panel-active .text-overlay > p.secondary-text {
+  transform: translateY(0);
   opacity: 1;
-}
-
-.panel-active > .secondary-text:first-child {
-  top: 10%;
-}
-
-.panel-active > .secondary-text:last-child {
-  bottom: 10%;
-}
-
-.panel:nth-child(1) {
-  background-image: url('https://source.unsplash.com/w_UIMfUtFnc/1000x500');
-}
-
-.panel:nth-child(2) {
-  background-image: url('https://source.unsplash.com/QvTrOrhJOJ4/1000x500');
-}
-
-.panel:nth-child(3) {
-  background-image: url('https://source.unsplash.com/AJ8xxudtzxw/1000x500');
-}
-
-.panel:nth-child(4) {
-  background-image: url('https://source.unsplash.com/73DaTub6kDU/1000x500');
-}
-
-.panel:nth-child(5) {
-  background-image: url('https://source.unsplash.com/D5LI5NC3f8Q/1000x500');
 }
